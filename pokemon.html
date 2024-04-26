@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 5px;
+            background-color: #666;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #444;
+        }
+
+        main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .game {
+            width: 300px;
+            background-color: white;
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .game img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .game h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .game p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pokémon Games</h1>
+        <nav>
+            <a href="#" id="red">Pokémon Red/Blue</a>
+            <a href="#" id="gold">Pokémon Gold/Silver</a>
+            <a href="#" id="ruby">Pokémon Ruby/Sapphire</a>
+            <a href="#" id="diamond">Pokémon Diamond/Pearl</a>
+            <a href="#" id="black">Pokémon Black/White</a>
+            <a href="#" id="xy">Pokémon X/Y</a>
+            <a href="#" id="sword">Pokémon Sword/Shield</a>
+        </nav>
+    </header>
+
+    <main>
+        <div id="game-container">
+            <!-- Game descriptions and cover art will be dynamically added here -->
+        </div>
+    </main>
+
+    <script>
+        // Sample data for game descriptions and cover art
+        const gamesData = {
+            red: {
+                title: "Pokémon Red/Blue",
+                description: "Pokémon Red and Blue are role-playing video games developed by Game Freak and published by Nintendo for the Game Boy. They are the first installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/7/73/Red_Boxart_EN_US.jpg/250px-Red_Boxart_EN_US.jpg"
+            },
+            gold: {
+                title: "Pokémon Gold/Silver",
+                description: "Pokémon Gold and Silver are role-playing video games developed by Game Freak and published by Nintendo for the Game Boy Color. They are the second installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/6/62/Gold_Boxart_EN_US.jpg/250px-Gold_Boxart_EN_US.jpg"
+            },
+            ruby: {
+                title: "Pokémon Ruby/Sapphire",
+                description: "Pokémon Ruby and Sapphire are role-playing video games developed by Game Freak and published by Nintendo for the Game Boy Advance. They are the third installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/2/21/Ruby_EN_US_Boxart.png/250px-Ruby_EN_US_Boxart.png"
+            },
+            diamond: {
+                title: "Pokémon Diamond/Pearl",
+                description: "Pokémon Diamond and Pearl are role-playing video games developed by Game Freak and published by Nintendo for the Nintendo DS. They are the fourth installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/3/39/Diamond_EN_US_Boxart.png/250px-Diamond_EN_US_Boxart.png"
+            },
+            black: {
+                title: "Pokémon Black/White",
+                description: "Pokémon Black and White are role-playing video games developed by Game Freak and published by Nintendo for the Nintendo DS. They are the fifth installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/6/61/Black_EN_US_Boxart.png/250px-Black_EN_US_Boxart.png"
+            },
+            xy: {
+                title: "Pokémon X/Y",
+                description: "Pokémon X and Y are role-playing video games developed by Game Freak and published by Nintendo for the Nintendo 3DS. They are the sixth installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/3/36/X_EN_US_Boxart.png/250px-X_EN_US_Boxart.png"
+            },
+            sword: {
+                title: "Pokémon Sword/Shield",
+                description: "Pokémon Sword and Shield are role-playing video games developed by Game Freak and published by Nintendo for the Nintendo Switch. They are the eighth installments in the Pokémon series.",
+                image: "https://cdn.bulbagarden.net/upload/thumb/6/60/Sword_EN_US_boxart.png/250px-Sword_EN_US_boxart.png"
+            }
+        };
+
+        const gameContainer = document.getElementById('game-container');
+
+        // Function to display game information
+        function displayGame(gameId) {
+            const game = gamesData[gameId];
+            if (!game) return;
+
+            const gameDiv = document.createElement('div');
+            gameDiv.classList.add('game');
+
+            const image = document.createElement('img');
+            image.src = game.image;
+            image.alt = game.title + " cover art"; // Alt text added
+
+            const title = document.createElement('h2');
+            title.textContent = game.title;
+
+            const description = document.createElement('p');
+            description.textContent = game.description;
+
+            gameDiv.appendChild(image);
+            gameDiv.appendChild(title);
+            gameDiv.appendChild(description);
+
+            gameContainer.innerHTML = '';
+            gameContainer.appendChild(gameDiv);
+        }
+
+        // Event listeners for each game button
+        document.getElementById('red').addEventListener('click', () => displayGame('red'));
+        document.getElementById('gold').addEventListener('click', () => displayGame('gold'));
+        document.getElementById('ruby').addEventListener('click', () => displayGame('ruby'));
+        document.getElementById('diamond').addEventListener('click', () => displayGame('diamond'));
+        document.getElementById('black').addEventListener('click', () => displayGame('black'));
+        document.getElementById('xy').addEventListener('click', () => displayGame('xy'));
+        document.getElementById('sword').addEventListener('click', () => displayGame('sword'));
+
+        // Display default game
+        displayGame('red');
+    </script>
+</body>
+</html>
